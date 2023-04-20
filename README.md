@@ -1,5 +1,4 @@
 # CECS 326 Reading Assignment: Processes and Threads
-## 20 points
 
 ### Assignment Description
 Answer the following questions from the chapter 2 reading from your text book. Be complete with your answers. You may work on these questions with one or two other partners, but *all* students must submit the document individually in their own repositories along with each student's name documented with the submission.

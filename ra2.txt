@@ -1,0 +1,53 @@
+McKenna, Connor
+Pham-Tran, Michael
+
+CECS 326 Reading Assignment 2: Processes and Threads
+
+1. Assume that you are trying to download a large 2-GB file from the Internet. The file is available from a set of mirror servers, each of which can deliver a subset of the file’s bytes; assume that a given request specifies the starting and ending bytes of the file. Explain how you might use threads to improve the download time.
+
+    Using Threads will speed up the download time of the file by splitting the task into concurrent threads. This will increase the network bandwidth while reducing idle time by allowing threads to operate asynchronously.
+
+2. What is the biggest advantage of implementing threads in user space? What is the biggest disadvantage?
+
+    One advantage is that a user-level threads package can be implemented on an OS that does not support threads. User-level thread switching is faster that than trapping to the kernel. Another advantage is that user-level threads allow each process to have its own customized scheduling algorithm. They also scale better than kernel level threads. 
+
+    Despite their performance, user-level threads has an implementation issue with blocking system calls and page faults. Another problem with user-level thread packages is that if a thread starts running, no other thread in that process will ever run unless the first thread voluntarily gives up the CPU. The biggest disadvantage is that programmers generally want threads in applications where the threads block often, as, for example, in a multithreaded Web server. 
+
+3. Does Peterson’s solution to the mutual-exclusion problem shown in Fig. 2-24 of MOS4e work when process scheduling is preemptive? How about when it is nonpreemptive?
+
+    Peterson’s solution works when process scheduling is nonpreemptive, but encounters issues when scheduling is preemptive. This is because Peterson’s solution relies on the CPU and assumes that tasks won't be interrupted unexpectedly.
+
+
+4.The producer-consumer problem can be extended to a system with multiple producers and consumers that write (or read) to (from) one shared buffer. Assume that each producer and consumer runs in its own thread. Will the solution presented in Fig. 2-28 of MOS4e, using semaphores, work for this system?
+
+    The solution using semaphores will not work. The mutex semaphore is used for mutual exclusion, while the full and emppty semaphores are used for synchronization. However, extending this solution to multiple producers and consumers will not be enough to prevent issues like race conditions and deadlocks. 
+
+5. How could an operating system that can disable interrupts implement semaphores?
+
+    An operating system that can disable interrupts could use semaphores by checking or updating the value. This could briefly disable interrupts during important tasks. 
+
+6. A fast-food restaurant has four kinds of employees: (a) order takers, who take customers’ orders; (b) cooks, who prepare the food; (c) packaging specialists, who stuff the food into bags; and (d) cashiers, who give the bags to customers and take their money. 
+
+Each employee can be regarded as a communicating sequential process. What form of interprocess communication do they use? Relate this model to processes in UNIX.
+
+    This would be the Message Passing form of interprocess communication which uses two primitives, send and receive, to make system calls.  The UNIX process related to message passing would be pipes because a pip can connect two processes together. f11
+7. Five jobs are waiting to be run. Their expected run times are 9, 6, 3 5, and x. In what order should they be run to minimize average response time? (Your answer will depend on x).
+
+    According to Shortest Job First they should be run in shortest to longest run time. For example if x was < 3 then the order would be x,3,5,6,9
+
+8. The aging algorithm with a = 1/2 is being used to predict run times. The previous four runs, from oldest to most recent, are 40, 20, 40, and 15 msec. What is the prediction of the next time? Explain.
+
+    The prediction of the next time using the aging algorithm with a = 1/2 is 25msec. 40/8 + 20/8 + 40/4 + 15/2 = 25.
+
+9. In the dining philosophers problem, let the following protocol be used: An even-numbered philosopher always picks up his left fork before picking up his right fork; an odd-numbered philosopher always picks up his right fork before picking up his left fork. Will this protocol guarantee deadlock-free operation? Why or why not?
+
+    Yes this guarantees deadlock-free operation, with the protocol there's always 2 free forks to finish the pairs without making all philosophers wait infinitely. 
+
+
+10. The readers and writers problem can be formulated in several ways with regard to which category of processes can be started when. Carefully describe three different variations of the problem, each one favoring (or not favoring) some category of processes. For each variation, specify what happens when a reader or a writer becomes ready to access the database, and what happens when a process is finished.
+
+    Varation 1: Readers (Favored) Writers (Unfavored), in this variation all readers are admitted instantly as long as there's one reader active. Writers would have to wait until all reader's, including new ones, processes are finished before being granted access. 
+
+    Varation 2: Writers (Favored) Readers (Unfavored), in this variation writers would be put into a queue for writers since writers need exclusive access. Whenever a writer's process finished the next writer would begin theirs. Readers would have to wait until all writer's processes are finished before being granted access. 
+
+    Varation 3: Readers (Unfavored) Writers (Unfavored), in this variation neither are favored so access comes down to who got there first, new readers would not skip the queue and would be put behind writers that were there first.

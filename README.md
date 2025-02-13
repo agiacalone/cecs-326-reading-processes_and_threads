@@ -21,9 +21,9 @@ Answer the following questions from the Chapter 2 reading from your text book. B
     
     Each employee can be regarded as a communicating sequential process. What form of interprocess communication do they use? Relate this model to processes in UNIX.
 
-7. Five jobs are waiting to be run. Their expected run times are 9, 6, 3, 5, and x. In what order should they be run to minimize average response time? (Your answer will depend on x).
+7. Five jobs are waiting to be run. Their expected run times are `9`, `6`, `3`, `5`, and `x`. In what order should they be run to minimize average response time? (Your answer will depend on x).
 
-8. The aging algorithm with a = 1/2 is being used to predict run times. The previous four runs, from oldest to most recent, are 40, 20, 40, and 15 msec. What is the prediction of the next time? Explain.
+8. The aging algorithm with a = 1/2 is being used to predict run times. The previous four runs, from oldest to most recent, are `40`, `20`, `40`, and `15` msec. What is the prediction of the next time? Explain.
 
 9. In the dining philosophers problem, let the following protocol be used: An even-numbered philosopher always picks up his left fork before picking up his right fork; an odd-numbered philosopher always picks up his right fork before picking up his left fork. Will this protocol guarantee deadlock-free operation? Why or why not?
 
